@@ -9,8 +9,7 @@ class Genes
     @quiz = Quiz.new(quiz_length)
 
     begin
-      @genes = []
-      gene_count.times { @genes << Gene.new(quiz_length) }
+      @genes = Array.new(gene_count) { Gene.new(quiz_length) }
       self.mark()
       self.sort()
     end until self.max < quiz_length
@@ -87,8 +86,7 @@ class Gene
 
   def initialize(length)
     @length = length
-    @answers = []
-    @length.times { |i| @answers << rand(3) }
+    @answers = Array.new(@length) { rand(3) }
   end
 
   def [](index)
@@ -122,5 +120,9 @@ Genes.new.start do |genes|
   10.times do |i|
     puts "#{i} #{genes[i]} #{genes[i].score}"
   end
-  break if gets =~ /x/
+  # manual
+  #break if gets =~ /x/
+  # auto
+  sleep 1
+  puts
 end
